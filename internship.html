@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internship Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1A103D, #4B2E83);
+      color: #FFFFFF;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 80%;
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    .header {
+      font-size: 32px;
+      color: #FFA500;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .search-bar {
+      margin-bottom: 30px;
+    }
+
+    .search-bar input {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 25px;
+      margin: 0 10px;
+      width: 250px;
+    }
+
+    .search-bar button,button {
+      background-color: #FFA500;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .search-bar button:hover {
+      background-color: #FF8C00;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #ffffff;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4B2E83;
+      color: white;
+    }
+
+    td {
+      background-color: #2E1B47;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #3E1A58;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">Internship Details</div>
+
+    <!-- Search Bar Section -->
+    <div class="search-bar">
+      <input type="text" id="searchName" placeholder="Enter search/sort detail (Name)" />
+      <input type="text" id="searchSemester" placeholder="Enter Semester" />
+      <input type="text" id="searchInternshipCompany" placeholder="Enter Internship Company" />
+      <input type="text" id="searchStipendAmount" placeholder="Enter Stipend Amount" />
+      <button onclick="searchInternships()">Search</button>
+    </div>
+
+    <!-- Internship Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Semester</th>
+          <th>Internship Company</th>
+          <th>Stipend Amount</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody id="internshipTable">
+        <!-- Data rows will be populated here -->
+      </tbody>
+    </table>
+    <!-- Button Section -->
+    <a href="anoushka.html">
+      <button class="button" onclick="window.location.href='/anoushka.html'">Go to User Profile</button>
+    </a>
+  </div>
+
+  <script>
+    // Function to fetch internship data
+    function fetchInternships(searchParams = {}) {
+      // Construct the URL with query parameters
+      const queryParams = new URLSearchParams(searchParams);
+      fetch(`http://localhost:5000/api/internships?${queryParams.toString()}`)
+        .then(response => response.json())
+        .then(data => {
+          const tableBody = document.querySelector('#internshipTable');
+          tableBody.innerHTML = '';  // Clear existing rows
+
+          // If no data, show a message
+          if (data.length === 0) {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td colspan="5" style="text-align: center;">No matching internships found</td>`;
+            tableBody.appendChild(row);
+            return;
+          }
+
+          // Add the fetched data into the table rows
+          data.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${item.Name}</td>
+              <td>${item.Semester}</td>
+              <td>${item.Internship_Company}</td>
+              <td>${item.Stipend_Amount}</td>
+              <td>${item.Email}</td>
+            `;
+            tableBody.appendChild(row);
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching internship details:', error);
+        });
+    }
+
+    // Function to handle search with multiple fields
+    function searchInternships() {
+      const name = document.getElementById('searchName').value;
+      const semester = document.getElementById('searchSemester').value;
+      const internshipCompany = document.getElementById('searchInternshipCompany').value;
+      const stipendAmount = document.getElementById('searchStipendAmount').value;
+
+      // Collect all search parameters in an object
+      const searchParams = {
+        name: name,
+        semester: semester,
+        internship_company: internshipCompany,
+        stipend_amount: stipendAmount,
+      };
+
+      // Fetch internships based on the provided search criteria
+      fetchInternships(searchParams);
+    }
+
+    // Initial fetch of all internships on page load
+    window.onload = function() {
+      fetchInternships();  // Fetch all internships initially
+    };
+  </script>
+</body>
+</html>

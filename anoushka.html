@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .profile-container {
+            background: #1e1e1e; /* Dark container background */
+            width: 80%;
+            max-width: 1000px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333; /* Dark separator */
+            padding-bottom: 15px;
+            background-color: #4CAF50; /* Green header */
+            color: white;
+        }
+
+        .profile-header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 600;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .profile-info img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 4px solid #4CAF50; /* Green border */
+        }
+
+        .profile-info .info {
+            font-size: 1.1em;
+            color: #b0b0b0; /* Light grey text */
+        }
+
+        .profile-info .info p {
+            margin: 5px 0;
+            font-weight: 500;
+        }
+
+        .profile-info .info p span {
+            color: #e0e0e0;
+            font-weight: 600;
+        }
+
+        .recent-activities {
+            background: #1e1e1e; /* Dark background for activities */
+            width: 100%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-top: 2px solid #333; /* Dark separator */
+        }
+
+        .recent-activities h3 {
+            font-size: 1.8em;
+            color: #e0e0e0; /* Light text color */
+            margin-bottom: 20px;
+        }
+
+        .recent-activities ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .recent-activities ul li {
+            background-color: #333; /* Dark background for activities */
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .recent-activities ul li:hover {
+            transform: scale(1.03);
+            background-color: #444; /* Slightly lighter on hover */
+        }
+
+        .recent-activities ul li .activity-time {
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .recent-activities ul li .activity-text {
+            font-size: 1.2em;
+            color: #e0e0e0; /* Light text color */
+            font-weight: 500;
+        }
+
+        .buttons-container {
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 30px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <h1>John Doe</h1>
+        </div>
+
+        <!-- Profile Information Section -->
+        <div class="profile-info">
+            <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Profile Picture">
+            <div class="info">
+                <p><span>Full Name:</span> John Doe</p>
+                <p><span>Email:</span> johndoe@example.com</p>
+                <p><span>Phone:</span> +1 123 456 7890</p>
+                <p><span>Location:</span> New York, USA</p>
+            </div>
+        </div>
+
+        <!-- Recent Activities Section -->
+        <div class="recent-activities">
+            <h3>Recent Activities</h3>
+            <ul>
+                <li>
+                    <div class="activity-text">Attended a conference on Web Development</div>
+                    <div class="activity-time">December 12, 2024 - 3:00 PM</div>
+                </li>
+                <li>
+                    <div class="activity-text">Completed a course on JavaScript</div>
+                    <div class="activity-time">December 5, 2024 - 9:00 AM</div>
+                </li>
+                <li>
+                    <div class="activity-text">Submitted a project on Data Science</div>
+                    <div class="activity-time">November 30, 2024 - 5:30 PM</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="buttons-container">
+        <a href="Calendar for students.html">
+            <button class="button" onclick="window.location.href='event-calendar.html'">Event Calendar</button>
+        </a>
+        <a href="internship.html">
+            <button class="button" onclick="window.location.href='student-internship-profile.html'">Student Internship Profile</button>
+        </a>
+        </div>
+    </div>
+</body>
+</html>
